@@ -1,0 +1,156 @@
+ALTER TABLE Dim_Competition 
+ADD CONSTRAINT PK_Dim_Competition PRIMARY KEY ([competition_id]);
+
+/* Trọng tài */
+WITH CTE AS (
+    SELECT Referee, ROW_NUMBER() OVER (PARTITION BY Referee ORDER BY (SELECT NULL)) AS RowNum
+    FROM dbo.Dim_Referee
+)
+DELETE FROM CTE
+WHERE RowNum > 1;
+
+/* 2. Thêm Primary Key cho bảng Dim_Referee */
+ALTER TABLE Dim_Referee 
+ADD CONSTRAINT PK_Dim_Referee PRIMARY KEY ([referee]);
+
+/* 3. Thêm Primary Key cho bảng Dim_Date */
+ALTER TABLE Dim_Date 
+ADD CONSTRAINT PK_Dim_Date PRIMARY KEY ([date]);
+
+/* 4. Thêm Primary Key cho bảng Dim_Player */
+ALTER TABLE Dim_Player 
+ADD CONSTRAINT PK_Dim_Player PRIMARY KEY ([player_id]);
+
+/* 5. Thêm Primary Key cho bảng Dim_Player_Type */
+ALTER TABLE Dim_Player_Type 
+ADD CONSTRAINT PK_Dim_Player_Type PRIMARY KEY ([type]);
+
+/* 6. Thêm Primary Key cho bảng Dim_Position */
+ALTER TABLE Dim_Position 
+ADD CONSTRAINT PK_Dim_Position PRIMARY KEY ([sub_position]);
+
+/* 7. Thêm Primary Key cho bảng Dim_Stadium */
+WITH CTE AS (
+    SELECT Stadium, ROW_NUMBER() OVER (PARTITION BY Stadium ORDER BY (SELECT NULL)) AS RowNum
+    FROM dbo.dim_Stadium
+)
+DELETE FROM CTE
+WHERE RowNum > 1;
+ALTER TABLE Dim_Stadium 
+ADD CONSTRAINT PK_Dim_Stadium PRIMARY KEY ([stadium]);
+
+/* 8. Thêm Primary Key cho bảng Dim_Hosting */
+ALTER TABLE Dim_Hosting 
+ADD CONSTRAINT PK_Dim_Hosting PRIMARY KEY ([hosting]);
+
+/* 9. Thêm Primary Key cho bảng Dim_Type_Competition */
+ALTER TABLE Dim_Type_Competition 
+ADD CONSTRAINT PK_Dim_Type_Competition PRIMARY KEY ([sub_type]);
+
+/* 10. Thêm Primary Key cho bảng Dim_Result */
+ALTER TABLE Dim_Result 
+ADD CONSTRAINT PK_Dim_Result PRIMARY KEY ([rating]);
+
+/* 11. Thêm Primary Key cho bảng Dim_Round */
+ALTER TABLE Dim_Round 
+ADD CONSTRAINT PK_Dim_Round PRIMARY KEY ([round]);
+
+DELETE FROM Dim_Club
+WHERE [club_id] IS NULL;
+
+/* 12. Thêm Primary Key cho bảng Dim_Club */
+ALTER TABLE Dim_Club 
+ADD CONSTRAINT PK_Dim_Club PRIMARY KEY ([club_id]);
+
+/* 13. Thêm Primary Key cho bảng Fact_Player_Performance */
+WITH CTE AS (
+    SELECT [appearance_id], ROW_NUMBER() OVER (PARTITION BY [appearance_id] ORDER BY (SELECT NULL)) AS RowNum
+    FROM dbo.Fact_Player_Performance
+)
+DELETE FROM CTE
+WHERE RowNum > 1;
+ALTER TABLE [Fact_Player_Performance] 
+ADD CONSTRAINT PK_Fact_Player_Performance PRIMARY KEY ([appearance_id]);
+
+/* 1. Thêm Khóa Ngoại cho sub_type liên kết với bảng Dim_Type_Competition */
+ALTER TABLE [dbo].[Dim_Competition] 
+ADD CONSTRAINT FK_Dim_Competition_type FOREIGN KEY ([sub_type]) 
+REFERENCES [dbo].[Dim_Type_Competition]([sub_type]);
+
+/* 1. Thêm Khóa Ngoại cho sub_position liên kết với bảng Dim_Position */
+ALTER TABLE [dbo].[Fact_Player_Performance] 
+ADD CONSTRAINT FK_Fact_Player_Performance_Position FOREIGN KEY ([sub_position]) 
+REFERENCES [dbo].[Dim_Position]([sub_position]);
+
+/* 2. Thêm Khóa Ngoại cho player_club_id liên kết với bảng Dim_Club */
+DELETE FROM Fact_Player_Performance
+WHERE player_club_id NOT IN (
+    SELECT club_id
+    FROM Dim_Club
+);
+ALTER TABLE [dbo].[Fact_Player_Performance] 
+ADD CONSTRAINT FK_Fact_Player_Performance_Club FOREIGN KEY ([player_club_id]) 
+REFERENCES [dbo].[Dim_Club]([club_id]);
+
+/* 3. Thêm Khóa Ngoại cho OpponentClubID liên kết với bảng Dim_Club */
+DELETE FROM dbo.Fact_Player_Performance
+WHERE [OpponentClubID] IN (
+    SELECT DISTINCT fp.[OpponentClubID]
+    FROM dbo.Fact_Player_Performance fp
+    LEFT JOIN dbo.Dim_Club dc ON fp.[OpponentClubID] = dc.club_id
+    WHERE dc.club_id IS NULL
+);
+ALTER TABLE [dbo].[Fact_Player_Performance] 
+ADD CONSTRAINT FK_Fact_Player_Performance_OpponentClub FOREIGN KEY ([OpponentClubID]) 
+REFERENCES [dbo].[Dim_Club]([club_id]);
+
+/* 4. Thêm Khóa Ngoại cho competition_id liên kết với bảng Dim_Competition */
+ALTER TABLE [dbo].[Fact_Player_Performance] 
+ADD CONSTRAINT FK_Fact_Player_Performance_Competition FOREIGN KEY ([competition_id]) 
+REFERENCES [dbo].[Dim_Competition]([competition_id]);
+
+/* 5. Thêm Khóa Ngoại cho MatchDateKey liên kết với bảng Dim_Date */
+ALTER TABLE [dbo].[Fact_Player_Performance] 
+ADD CONSTRAINT FK_Fact_Player_Performance_Date FOREIGN KEY ([MatchDateKey]) 
+REFERENCES [dbo].[Dim_Date]([date]);
+
+/* 6. Thêm Khóa Ngoại cho match_rating liên kết với bảng Dim_Result */
+ALTER TABLE [dbo].[Fact_Player_Performance] 
+ADD CONSTRAINT FK_Fact_Player_Performance_Rating FOREIGN KEY ([match_rating]) 
+REFERENCES [dbo].[Dim_Result](rating);
+
+/* 7. Thêm Khóa Ngoại cho referee_name liên kết với bảng Dim_Referee */
+ALTER TABLE [dbo].[Fact_Player_Performance] 
+ADD CONSTRAINT FK_Fact_Player_Performance_Referee FOREIGN KEY ([referee_name]) 
+REFERENCES [dbo].[Dim_Referee]([referee]);
+
+/* 8. Thêm Khóa Ngoại cho player_role liên kết với bảng Dim_Player_Type */
+ALTER TABLE [dbo].[Fact_Player_Performance] 
+ADD CONSTRAINT FK_Fact_Player_Performance_PlayerRole FOREIGN KEY ([player_type]) 
+REFERENCES [dbo].[Dim_Player_Type]([type]);
+
+/* 9. Thêm Khóa Ngoại cho hosting_team liên kết với bảng Dim_Hosting */
+ALTER TABLE [dbo].[Fact_Player_Performance] 
+ADD CONSTRAINT FK_Fact_Player_Performance_Hosting FOREIGN KEY ([hosting_team]) 
+REFERENCES [dbo].[Dim_Hosting]([hosting]);
+
+/* 10. Thêm Khóa Ngoại cho round liên kết với bảng Dim_Round */
+ALTER TABLE [dbo].[Fact_Player_Performance] 
+ADD CONSTRAINT FK_Fact_Player_Performance_Round FOREIGN KEY ([round_name]) 
+REFERENCES [dbo].[Dim_Round]([round]);
+
+/* 11. Thêm Khóa Ngoại cho stadium liên kết với bảng Dim_Stadium */
+ALTER TABLE [dbo].[Fact_Player_Performance] 
+ADD CONSTRAINT FK_Fact_Player_Performance_Stadium FOREIGN KEY ([stadium_name]) 
+REFERENCES [dbo].[Dim_Stadium]([stadium]);
+
+/* 12. Thêm Khóa Ngoại cho player_id liên kết với bảng Dim_Player */
+DELETE FROM Fact_Player_Performance
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Dim_Player
+    WHERE Dim_Player.[player_id] = Fact_Player_Performance.[player_id]
+);
+ALTER TABLE [dbo].[Fact_Player_Performance] 
+ADD CONSTRAINT FK_Fact_Player_Performance_Player FOREIGN KEY ([player_id]) 
+REFERENCES [dbo].[Dim_Player]([player_id]);

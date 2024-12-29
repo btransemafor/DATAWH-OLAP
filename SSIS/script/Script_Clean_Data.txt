@@ -1,0 +1,226 @@
+-- Làm sạch 
+
+-- ================= 1. stg_GameClubs ======================
+
+Quá trình làm sạch bảng stg_GameClub
+
+UPDATE [dbo].[stg_GameClubs]
+SET
+    [game_id] = COALESCE(NULLIF([game_id], ''), 'unknown'),
+    [club_id] = COALESCE(NULLIF([club_id], ''), 'unknown'),
+    [own_goals] = COALESCE(NULLIF([own_goals], ''), '0'),
+    [opponent_id] = COALESCE(NULLIF([opponent_id], ''), 'unknown'),
+    [opponent_goals] = COALESCE(NULLIF([opponent_goals], ''), '0'),
+    [hosting] = COALESCE(NULLIF([hosting], ''), 'unknown'),
+    [own_position] = COALESCE(NULLIF([own_position], ''), 'unknown'),
+	[is_win] = COALESCE([is_win], 'unknown'), 
+    [opponent_position] = COALESCE(NULLIF([opponent_position], ''), 'unknown')
+
+
+-- ================ 2. stg_Players =======================
+
+Quá trình làm sạch bảng stg_Players
+
+UPDATE [dbo].[stg_Players]
+SET
+    [first_name] = COALESCE([first_name], 'unknown'),
+    [last_name] = COALESCE([last_name], 'unknown'),
+    [name] = COALESCE([name], 'unknown'),
+    [current_club_id] = COALESCE([current_club_id], 'unknown'),
+    [country_of_birth] = COALESCE([country_of_birth], 'unknown'),
+    [city_of_birth] = COALESCE([city_of_birth], 'unknown'),
+    [country_of_citizenship] = COALESCE([country_of_citizenship], 'unknown'),
+    [date_of_birth] = COALESCE([date_of_birth], 'unknown'),
+    [sub_position] = COALESCE([sub_position], 'unknown'),
+    [position] = COALESCE([position], 'unknown'),
+    [foot] = COALESCE([foot], 'unknown'),
+    [height_in_cm] = COALESCE(CAST([height_in_cm] AS FLOAT), 
+                              (SELECT AVG(CAST([height_in_cm] AS FLOAT)) 
+                               FROM [dbo].[stg_Players] 
+                               WHERE [height_in_cm] IS NOT NULL)),
+    [agent_name] = COALESCE([agent_name], 'unknown'),
+    [current_club_name] = COALESCE([current_club_name], 'unknown'),
+    [market_value_in_eur] = COALESCE([market_value_in_eur], '0'),
+    [highest_market_value_in_eur] = COALESCE([highest_market_value_in_eur], '0');
+
+
+-- ================== 3. stg_Club ========================
+
+Quá trình làm sạch bảng stg_Clubs
+
+UPDATE [dbo].[stg_clubs]
+SET
+    [name] = COALESCE([name], 'unknown'),
+    [domestic_competition_id] = COALESCE([domestic_competition_id], 'no_competition'),
+    [squad_size] = COALESCE([squad_size], '0'),
+    [average_age] = COALESCE(CAST([average_age] AS FLOAT), 
+                             (SELECT AVG(CAST([average_age] AS FLOAT)) 
+                              FROM [dbo].[STG_CLUBS] 
+                              WHERE [average_age] IS NOT NULL)),
+    [foreigners_number] = COALESCE([foreigners_number], '0'),
+    [foreigners_percentage] = COALESCE(CAST([foreigners_percentage] AS FLOAT), 
+                                        (SELECT AVG(CAST([foreigners_percentage] AS FLOAT)) 
+                                         FROM [dbo].[STG_CLUBS] 
+                                         WHERE [foreigners_percentage] IS NOT NULL)),
+    [national_team_players] = COALESCE([national_team_players], '0'),
+    [stadium_name] = COALESCE([stadium_name], 'unknown'),
+    [stadium_seats] = COALESCE([stadium_seats], 
+                               (SELECT AVG(CAST([stadium_seats] AS FLOAT)) 
+                                FROM [dbo].[STG_CLUBS] 
+                                WHERE [stadium_seats] IS NOT NULL)),
+    [net_transfer_record] = COALESCE([net_transfer_record], '0');
+
+
+===========   4. stg_competitions  ======================
+
+Quá trình làm sạch bảng stg_competitions 
+
+  -- Step 1: Update NULL values with default values (cleaning step)
+UPDATE [dbo].[stg_competitions]
+SET
+    [competition_code] = COALESCE(LTRIM(RTRIM([competition_code])), 'unknown'),
+    [name] = COALESCE(LTRIM(RTRIM([name])), 'unknown'),
+    [sub_type] = COALESCE(LTRIM(RTRIM([sub_type])), 'unknown'),
+    [type] = COALESCE(LTRIM(RTRIM([type])), 'unknown'),
+    [country_id] = COALESCE(LTRIM(RTRIM([country_id])), 'unknown'),
+    [country_name] = COALESCE(LTRIM(RTRIM([country_name])), 'unknown'),
+    [domestic_league_code] = COALESCE(LTRIM(RTRIM([domestic_league_code])), 'unknown'),
+    [confederation] = COALESCE(LTRIM(RTRIM([confederation])), 'unknown'),
+    [is_major_national_league] = COALESCE(LTRIM(RTRIM([is_major_national_league])), 'no');
+
+-- Step 2: Remove duplicate rows (based on unique columns like competition_code and name)
+WITH CTE AS (
+    SELECT 
+        *,
+        ROW_NUMBER() OVER (
+            PARTITION BY competition_code, name
+            ORDER BY competition_id
+        ) AS rn
+    FROM [dbo].[stg_competitions]
+)
+DELETE FROM CTE WHERE rn > 1;
+
+-- Step 3: Ensure all columns have trimmed white spaces (in case they are not NULL)
+UPDATE [dbo].[stg_competitions]
+SET
+    [competition_code] = LTRIM(RTRIM([competition_code])),
+    [name] = LTRIM(RTRIM([name])),
+    [sub_type] = LTRIM(RTRIM([sub_type])),
+    [type] = LTRIM(RTRIM([type])),
+    [country_id] = LTRIM(RTRIM([country_id])),
+    [country_name] = LTRIM(RTRIM([country_name])),
+    [domestic_league_code] = LTRIM(RTRIM([domestic_league_code])),
+    [confederation] = LTRIM(RTRIM([confederation])),
+    [is_major_national_league] = LTRIM(RTRIM([is_major_national_league]));
+
+
+
+-========== 5. STG_GAMES =============
+
+Quá trình làm sạch bảng stg_Game 
+
+UPDATE [stg_Game]
+SET 
+    -- Thay thế NULL hoặc chuỗi rỗng bằng 'unknown' cho các cột liên quan đến ID và tên câu lạc bộ
+    [home_club_id] = ISNULL(NULLIF(LTRIM(RTRIM([home_club_id])), ''), 'unknown'),
+    [away_club_id] = ISNULL(NULLIF(LTRIM(RTRIM([away_club_id])), ''), 'unknown'),
+    [home_club_name] = ISNULL(NULLIF(LTRIM(RTRIM([home_club_name])), ''), 'unknown'),
+    [away_club_name] = ISNULL(NULLIF(LTRIM(RTRIM([away_club_name])), ''), 'unknown'),
+
+    -- Thay NULL hoặc chuỗi rỗng bằng 0 cho các trường số
+    [home_club_goals] = ISNULL(NULLIF(LTRIM(RTRIM([home_club_goals])), ''), 0),
+    [away_club_goals] = ISNULL(NULLIF(LTRIM(RTRIM([away_club_goals])), ''), 0),
+    [attendance] = ISNULL(NULLIF(LTRIM(RTRIM([attendance])), ''), 0),
+
+    -- Thay thế NULL hoặc chuỗi rỗng bằng 'unknown' cho các trường vị trí
+    [home_club_position] = ISNULL(NULLIF(LTRIM(RTRIM([home_club_position])), ''), 'unknown'),
+    [away_club_position] = ISNULL(NULLIF(LTRIM(RTRIM([away_club_position])), ''), 'unknown'),
+
+    -- Thay thế NULL hoặc chuỗi rỗng bằng 'unknown' cho tên huấn luyện viên
+    [home_club_manager_name] = ISNULL(NULLIF(LTRIM(RTRIM([home_club_manager_name])), ''), 'unknown'),
+    [away_club_manager_name] = ISNULL(NULLIF(LTRIM(RTRIM([away_club_manager_name])), ''), 'unknown'),
+
+    -- Thay thế NULL hoặc chuỗi rỗng bằng 'unknown' cho sân vận động và trọng tài
+    [stadium] = ISNULL(NULLIF(LTRIM(RTRIM([stadium])), ''), 'unknown'),
+    [referee] = ISNULL(NULLIF(LTRIM(RTRIM([referee])), ''), 'unknown'),
+
+    -- Thay thế NULL hoặc chuỗi rỗng bằng 'unknown' cho đội hình
+    [home_club_formation] = ISNULL(NULLIF(LTRIM(RTRIM([home_club_formation])), ''), 'unknown'),
+    [away_club_formation] = ISNULL(NULLIF(LTRIM(RTRIM([away_club_formation])), ''), 'unknown'),
+
+    -- Thay thế NULL hoặc chuỗi rỗng bằng 'unknown' cho các thông tin khác
+    [aggregate] = ISNULL(NULLIF(LTRIM(RTRIM([aggregate])), ''), 'unknown'),
+    [competition_type] = ISNULL(NULLIF(LTRIM(RTRIM([competition_type])), ''), 'unknown'),
+
+    -- Thay thế NULL hoặc chuỗi rỗng bằng 'unknown' cho thông tin mùa giải, vòng đấu
+    [season] = ISNULL(NULLIF(LTRIM(RTRIM([season])), ''), 'unknown'),
+    [round] = ISNULL(NULLIF(LTRIM(RTRIM([round])), ''), 'unknown'),
+
+    -- Thay thế NULL cho cột ngày bằng giá trị mặc định là ngày hiện tại
+    [date] = ISNULL([date], GETDATE());
+
+
+
+============     6. Stg_GameLineUp ==================== 
+
+  UPDATE [stg_GameLineups]
+SET 
+    -- Thay thế NULL hoặc chuỗi rỗng bằng 'unknown' cho các cột liên quan đến ID và tên
+    [game_id] = ISNULL(NULLIF(LTRIM(RTRIM([game_id])), ''), 'unknown'),
+    [player_id] = ISNULL(NULLIF(LTRIM(RTRIM([player_id])), ''), 'unknown'),
+    [club_id] = ISNULL(NULLIF(LTRIM(RTRIM([club_id])), ''), 'unknown'),
+
+    -- Thay thế NULL hoặc chuỗi rỗng bằng 'unknown' cho các cột thông tin khác
+    [type] = ISNULL(NULLIF(LTRIM(RTRIM([type])), ''), 'unknown'),
+    [position] = ISNULL(NULLIF(LTRIM(RTRIM([position])), ''), 'unknown'),
+    [number] = ISNULL(NULLIF(LTRIM(RTRIM([number])), ''), 'unknown'),
+
+    -- Thay NULL cho team_captain (kiểu bit) bằng 0
+    [team_captain] = ISNULL([team_captain], 0);
+
+
+=========    7. Làm sạch bảng stg_Appearance =============== 
+
+UPDATE [stg_Appearances]
+SET
+    -- Thay thế NULL hoặc chuỗi rỗng bằng 'unknown' cho các cột liên quan đến ID và tên
+    [game_id] = ISNULL(NULLIF(LTRIM(RTRIM([game_id])), ''), 'unknown'),
+    [player_id] = ISNULL(NULLIF(LTRIM(RTRIM([player_id])), ''), 'unknown'),
+    [player_club_id] = ISNULL(NULLIF(LTRIM(RTRIM([player_club_id])), ''), 'unknown'),
+    [player_current_club_id] = ISNULL(NULLIF(LTRIM(RTRIM([player_current_club_id])), ''), 'unknown'),
+    [player_name] = ISNULL(NULLIF(LTRIM(RTRIM([player_name])), ''), 'unknown'),
+    [competition_id] = ISNULL(NULLIF(LTRIM(RTRIM([competition_id])), ''), 'unknown'),
+
+    -- Thay NULL cho cột ngày bằng ngày hiện tại
+    [date] = ISNULL([date], GETDATE()),
+
+    -- Thay thế NULL hoặc giá trị âm cho các cột số bằng 0
+    [yellow_cards] = ISNULL(NULLIF([yellow_cards], -1), 0),
+    [red_cards] = ISNULL(NULLIF([red_cards], -1), 0),
+    [goals] = ISNULL(NULLIF([goals], -1), 0),
+    [assists] = ISNULL(NULLIF([assists], -1), 0),
+    [minutes_played] = ISNULL(NULLIF([minutes_played], -1), 0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

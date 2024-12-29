@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35431.28
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "SSAS_FootballWorld", "SSAS_FootballWorld.dwproj", "{478C4A22-D347-415F-859C-6BD0D72EC31A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{478C4A22-D347-415F-859C-6BD0D72EC31A}.Development|Default.ActiveCfg = Development
+		{478C4A22-D347-415F-859C-6BD0D72EC31A}.Development|Default.Build.0 = Development
+		{478C4A22-D347-415F-859C-6BD0D72EC31A}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {76AFDAAB-63B7-45C7-89FC-8A81628485D7}
+	EndGlobalSection
+EndGlobal

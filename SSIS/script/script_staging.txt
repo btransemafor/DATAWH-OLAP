@@ -1,0 +1,136 @@
+- Script truncate: 
+
+TRUNCATE TABLE stg_appearances
+TRUNCATE TABLE stg_clubs 
+TRUNCATE TABLE stg_competitions 
+TRUNCATE TABLE stg_games
+TRUNCATE TABLE stg_gameclubs
+TRUNCATE TABLE stg_GameLineUps
+TRUNCATE TABLE stg_players 
+
+- Script tạo Staging: 
+
+-- 1. stg_appearances
+
+CREATE TABLE [dbo].[stg_appearances](
+	[appearance_id] [varchar](20) NOT NULL,
+	[game_id] [varchar](10) NULL,
+	[player_id] [varchar](10) NULL,
+	[player_club_id] [varchar](10) NULL,
+	[player_current_club_id] [varchar](10) NULL,
+	[date] [datetime] NULL,
+	[player_name] [nvarchar](50) NULL,
+	[competition_id] [varchar](10) NULL,
+	[yellow_cards] [int] NULL,
+	[red_cards] [int] NULL,
+	[goals] [int] NULL,
+	[assists] [int] NULL,
+	[minutes_played] [int] NULL
+) 
+-- 2. stg_clubs 
+
+CREATE TABLE [dbo].[stg_clubs](
+	[club_id] [varchar](10) NOT NULL,
+	[name] [nvarchar](100) NULL,
+	[domestic_competition_id] [varchar](10) NULL,
+	[squad_size] [varchar](50) NULL,
+	[average_age] [varchar](50) NULL,
+	[foreigners_number] [varchar](50) NULL,
+	[foreigners_percentage] [varchar](50) NULL,
+	[national_team_players] [varchar](50) NULL,
+	[stadium_name] [nvarchar](100) NULL,
+	[stadium_seats] [varchar](50) NULL,
+	[net_transfer_record] [nvarchar](50) NULL
+) 
+
+--3. stg_competitions 
+
+CREATE TABLE [dbo].[stg_competitions](
+	[competition_id] [varchar](10) NOT NULL,
+	[competition_code] [varchar](50) NULL,
+	[name] [varchar](50) NULL,
+	[sub_type] [varchar](50) NULL,
+	[type] [varchar](50) NULL,
+	[country_id] [varchar](10) NULL,
+	[country_name] [varchar](50) NULL,
+	[domestic_league_code] [varchar](10) NULL,
+	[confederation] [varchar](50) NULL,
+	[is_major_national_league] [varchar](5) NULL
+) 
+
+--4. stg_games
+
+CREATE TABLE [dbo].[stg_game](
+	[game_id] [varchar](10) NOT NULL,
+	[competition_id] [varchar](10) NULL,
+	[season] [varchar](4) NULL,
+	[round] [varchar](50) NULL,
+	[date] [datetime] NULL,
+	[home_club_id] [varchar](50) NULL,
+	[away_club_id] [varchar](50) NULL,
+	[home_club_goals] [varchar](50) NULL,
+	[away_club_goals] [varchar](50) NULL,
+	[home_club_position] [varchar](50) NULL,
+	[away_club_position] [varchar](50) NULL,
+	[home_club_manager_name] [nvarchar](255) NULL,
+	[away_club_manager_name] [nvarchar](255) NULL,
+	[stadium] [nvarchar](100) NULL,
+	[attendance] [varchar](50) NULL,
+	[referee] [nvarchar](50) NULL,
+	[home_club_formation] [varchar](255) NULL,
+	[away_club_formation] [varchar](255) NULL,
+	[home_club_name] [nvarchar](255) NULL,
+	[away_club_name] [nvarchar](255) NULL,
+	[aggregate] [varchar](50) NULL,
+	[competition_type] [varchar](50) NULL
+) 
+
+--5. stg_GameClubs
+
+CREATE TABLE [dbo].[stg_GameClubs](
+	[game_id] [varchar](10) NULL,
+	[club_id] [varchar](10) NULL,
+	[own_goals] [varchar](50) NULL,
+	[opponent_id] [varchar](10) NULL,
+	[opponent_goals] [varchar](10) NULL,
+	[hosting] [varchar](4) NULL,
+	[is_win] [smallint] NULL,
+	[own_position] [varchar](50) NULL,
+	[opponent_position] [varchar](10) NULL
+) 
+--6. stg_GameLineUps
+
+CREATE TABLE [dbo].[stg_GameLineUps](
+	[game_lineups_id] [varchar](50) NOT NULL,
+	[date] [nvarchar](100) NULL,
+	[game_id] [varchar](10) NULL,
+	[player_id] [varchar](10) NULL,
+	[club_id] [varchar](10) NULL,
+	[player_name] [nvarchar](50) NULL,
+	[type] [varchar](50) NULL,
+	[position] [varchar](50) NULL,
+	[number] [varchar](50) NULL,
+	[team_captain] [bit] NULL
+)
+
+-- 7. stg_players
+
+CREATE TABLE [dbo].[stg_players](
+	[player_id] [varchar](10) NULL,
+	[first_name] [nvarchar](50) NULL,
+	[last_name] [nvarchar](50) NULL,
+	[name] [nvarchar](50) NULL,
+	[current_club_id] [varchar](10) NULL,
+	[country_of_birth] [nvarchar](50) NULL,
+	[city_of_birth] [nvarchar](100) NULL,
+	[country_of_citizenship] [nvarchar](50) NULL,
+	[date_of_birth] [varchar](50) NULL,
+	[sub_position] [varchar](50) NULL,
+	[position] [varchar](50) NULL,
+	[foot] [varchar](50) NULL,
+	[height_in_cm] [varchar](50) NULL,
+	[agent_name] [nvarchar](50) NULL,
+	[current_club_name] [nvarchar](100) NULL,
+	[market_value_in_eur] [varchar](200) NULL,
+	[highest_market_value_in_eur] [varchar](200) NULL
+)

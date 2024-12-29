@@ -1,0 +1,228 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Competition.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|solutionrelative:Dim Competition.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Club.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|solutionrelative:Dim Club.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Date.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|solutionrelative:Dim Date.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Football World View.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|solutionrelative:Football World View.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Player Type.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|solutionrelative:Dim Player Type.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Stadium.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|solutionrelative:Dim Stadium.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Position.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|solutionrelative:Dim Position.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Player.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|solutionrelative:Dim Player.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Round.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|solutionrelative:Dim Round.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Referee.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|solutionrelative:Dim Referee.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Result.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|solutionrelative:Dim Result.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Hosting.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|solutionrelative:Dim Hosting.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Football World Cube.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{478C4A22-D347-415F-859C-6BD0D72EC31A}|SSAS_FootballWorld.dwproj|solutionrelative:Football World Cube.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Dim Competition.dim [Design]",
+              "DocumentMoniker": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Competition.dim",
+              "RelativeDocumentMoniker": "Dim Competition.dim",
+              "ToolTip": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Competition.dim [Design]",
+              "RelativeToolTip": "Dim Competition.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-24T19:49:58.172Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Dim Player Type.dim [Design]",
+              "DocumentMoniker": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Player Type.dim",
+              "RelativeDocumentMoniker": "Dim Player Type.dim",
+              "ToolTip": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Player Type.dim [Design]",
+              "RelativeToolTip": "Dim Player Type.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-24T19:49:55.121Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Dim Stadium.dim [Design]",
+              "DocumentMoniker": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Stadium.dim",
+              "RelativeDocumentMoniker": "Dim Stadium.dim",
+              "ToolTip": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Stadium.dim [Design]",
+              "RelativeToolTip": "Dim Stadium.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-24T19:49:44.237Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Dim Position.dim [Design]",
+              "DocumentMoniker": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Position.dim",
+              "RelativeDocumentMoniker": "Dim Position.dim",
+              "ToolTip": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Position.dim [Design]",
+              "RelativeToolTip": "Dim Position.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-24T19:49:37.269Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dim Date.dim [Design]",
+              "DocumentMoniker": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Date.dim",
+              "RelativeDocumentMoniker": "Dim Date.dim",
+              "ToolTip": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Date.dim [Design]",
+              "RelativeToolTip": "Dim Date.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-24T19:49:13.304Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Dim Player.dim [Design]",
+              "DocumentMoniker": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Player.dim",
+              "RelativeDocumentMoniker": "Dim Player.dim",
+              "ToolTip": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Player.dim [Design]",
+              "RelativeToolTip": "Dim Player.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-24T19:48:41.905Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Dim Round.dim [Design]",
+              "DocumentMoniker": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Round.dim",
+              "RelativeDocumentMoniker": "Dim Round.dim",
+              "ToolTip": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Round.dim [Design]",
+              "RelativeToolTip": "Dim Round.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-24T19:48:40.299Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Dim Referee.dim [Design]",
+              "DocumentMoniker": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Referee.dim",
+              "RelativeDocumentMoniker": "Dim Referee.dim",
+              "ToolTip": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Referee.dim [Design]",
+              "RelativeToolTip": "Dim Referee.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-24T19:48:38.354Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dim Club.dim [Design]",
+              "DocumentMoniker": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Club.dim",
+              "RelativeDocumentMoniker": "Dim Club.dim",
+              "ToolTip": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Club.dim [Design]",
+              "RelativeToolTip": "Dim Club.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-24T19:48:17.184Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Dim Result.dim [Design]",
+              "DocumentMoniker": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Result.dim",
+              "RelativeDocumentMoniker": "Dim Result.dim",
+              "ToolTip": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Result.dim [Design]",
+              "RelativeToolTip": "Dim Result.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-24T19:48:09.807Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Dim Hosting.dim [Design]",
+              "DocumentMoniker": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Hosting.dim",
+              "RelativeDocumentMoniker": "Dim Hosting.dim",
+              "ToolTip": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Dim Hosting.dim [Design]",
+              "RelativeToolTip": "Dim Hosting.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-24T19:48:07.018Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Football World Cube.cube [Design]",
+              "DocumentMoniker": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Football World Cube.cube",
+              "RelativeDocumentMoniker": "Football World Cube.cube",
+              "ToolTip": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Football World Cube.cube [Design]",
+              "RelativeToolTip": "Football World Cube.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-24T19:47:54.435Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Football World View.dsv [Design]",
+              "DocumentMoniker": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Football World View.dsv",
+              "RelativeDocumentMoniker": "Football World View.dsv",
+              "ToolTip": "D:\\UIT - Courses\\OLAP\\Project DW_OLAP\\SSAS\\SSAS_FootballWorld\\Football World View.dsv [Design]",
+              "RelativeToolTip": "Football World View.dsv [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-24T19:47:09.28Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

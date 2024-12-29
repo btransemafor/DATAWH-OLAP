@@ -1,0 +1,94 @@
+-- Script xóa ràng buộc và xóa dữ liệu 
+IF EXISTS (SELECT 1
+                     FROM      sys.foreign_keys
+                     WHERE   name = 'FK_Fact_Player_Performance_Competition') ALTER TABLE Fact_Player_Performance DROP CONSTRAINT FK_Fact_Player_Performance_Competition; IF EXISTS
+    (SELECT 1
+     FROM      sys.foreign_keys
+     WHERE   name = 'FK_Fact_Player_Performance_Date') ALTER TABLE Fact_Player_Performance DROP CONSTRAINT FK_Fact_Player_Performance_Date; IF EXISTS
+    (SELECT 1
+     FROM      sys.foreign_keys
+     WHERE   name = 'FK_Fact_Player_Performance_Hosting') ALTER TABLE Fact_Player_Performance DROP CONSTRAINT FK_Fact_Player_Performance_Hosting; IF EXISTS
+    (SELECT 1
+     FROM      sys.foreign_keys
+     WHERE   name = 'FK_Fact_Player_Performance_OpponentClub') ALTER TABLE Fact_Player_Performance DROP CONSTRAINT FK_Fact_Player_Performance_OpponentClub; IF EXISTS
+    (SELECT 1
+     FROM      sys.foreign_keys
+     WHERE   name = 'FK_Fact_Player_Performance_Player') ALTER TABLE Fact_Player_Performance DROP CONSTRAINT FK_Fact_Player_Performance_Player; IF EXISTS
+    (SELECT 1
+     FROM      sys.foreign_keys
+     WHERE   name = 'FK_Fact_Player_Performance_PlayerRole') ALTER TABLE Fact_Player_Performance DROP CONSTRAINT FK_Fact_Player_Performance_PlayerRole; IF EXISTS
+    (SELECT 1
+     FROM      sys.foreign_keys
+     WHERE   name = 'FK_Fact_Player_Performance_Position') ALTER TABLE Fact_Player_Performance DROP CONSTRAINT FK_Fact_Player_Performance_Position; IF EXISTS
+    (SELECT 1
+     FROM      sys.foreign_keys
+     WHERE   name = 'FK_Fact_Player_Performance_Rating') ALTER TABLE Fact_Player_Performance DROP CONSTRAINT FK_Fact_Player_Performance_Rating; IF EXISTS
+    (SELECT 1
+     FROM      sys.foreign_keys
+     WHERE   name = 'FK_Fact_Player_Performance_Referee') ALTER TABLE Fact_Player_Performance DROP CONSTRAINT FK_Fact_Player_Performance_Referee; IF EXISTS
+    (SELECT 1
+     FROM      sys.foreign_keys
+     WHERE   name = 'FK_Fact_Player_Performance_Round') ALTER TABLE Fact_Player_Performance DROP CONSTRAINT FK_Fact_Player_Performance_Round; IF EXISTS
+    (SELECT 1
+     FROM      sys.foreign_keys
+     WHERE   name = 'FK_Fact_Player_Performance_Stadium') ALTER TABLE Fact_Player_Performance DROP CONSTRAINT FK_Fact_Player_Performance_Stadium; IF EXISTS
+    (SELECT 1
+     FROM      sys.foreign_keys
+     WHERE   name = 'FK_Fact_Player_Performance_Club') ALTER TABLE Fact_Player_Performance DROP CONSTRAINT FK_Fact_Player_Performance_Club; /* Xóa Primary Key của bảng Fact_Player_Performance nếu tồn tại*/ IF EXISTS
+    (SELECT 1
+     FROM      sys.key_constraints
+     WHERE   name = 'PK_Fact_Player_Performance') ALTER TABLE Fact_Player_Performance DROP CONSTRAINT PK_Fact_Player_Performance; TRUNCATE TABLE Fact_Player_Performance; 
+/* Step 3: Drop primary key and foreign key constraints from dimension tables if they exist*/ IF EXISTS
+    (SELECT 1
+     FROM      sys.key_constraints
+     WHERE   name = 'pk_dim_club') ALTER TABLE Dim_Club DROP CONSTRAINT pk_dim_club; IF EXISTS
+    (SELECT 1
+     FROM      sys.key_constraints
+     WHERE   name = 'pk_dim_competition') ALTER TABLE Dim_Competition DROP CONSTRAINT pk_dim_competition; IF EXISTS
+    (SELECT 1
+     FROM      sys.foreign_keys
+     WHERE   name = 'FK_Dim_Competition_type') ALTER TABLE Dim_Competition DROP CONSTRAINT FK_Dim_Competition_type; IF EXISTS
+    (SELECT 1
+     FROM      sys.key_constraints
+     WHERE   name = 'pk_dim_date') ALTER TABLE Dim_Date DROP CONSTRAINT pk_dim_date; IF EXISTS
+    (SELECT 1
+     FROM      sys.key_constraints
+     WHERE   name = 'pk_dim_hosting') ALTER TABLE Dim_Hosting DROP CONSTRAINT pk_dim_hosting; IF EXISTS
+    (SELECT 1
+     FROM      sys.key_constraints
+     WHERE   name = 'pk_dim_player') ALTER TABLE Dim_Player DROP CONSTRAINT pk_dim_player; IF EXISTS
+    (SELECT 1
+     FROM      sys.key_constraints
+     WHERE   name = 'pk_dim_player_type') ALTER TABLE Dim_Player_Type DROP CONSTRAINT pk_dim_player_type; IF EXISTS
+    (SELECT 1
+     FROM      sys.key_constraints
+     WHERE   name = 'pk_dim_position') ALTER TABLE Dim_Position DROP CONSTRAINT pk_dim_position; IF EXISTS
+    (SELECT 1
+     FROM      sys.key_constraints
+     WHERE   name = 'pk_dim_result') ALTER TABLE Dim_Result DROP CONSTRAINT pk_dim_result; IF EXISTS
+    (SELECT 1
+     FROM      sys.key_constraints
+     WHERE   name = 'pk_dim_referee') ALTER TABLE Dim_Referee DROP CONSTRAINT pk_dim_referee; IF EXISTS
+    (SELECT 1
+     FROM      sys.key_constraints
+     WHERE   name = 'pk_dim_round') ALTER TABLE Dim_Round DROP CONSTRAINT pk_dim_round; IF EXISTS
+    (SELECT 1
+     FROM      sys.key_constraints
+     WHERE   name = 'pk_dim_stadium') ALTER TABLE Dim_Stadium DROP CONSTRAINT pk_dim_stadium; IF EXISTS
+    (SELECT 1
+     FROM      sys.key_constraints
+     WHERE   name = 'pk_Dim_Type_Competition') 
+ALTER TABLE Dim_Type_Competition DROP CONSTRAINT pk_Dim_Type_Competition; 
+/* Step 4: Truncate each dimension table*/ 
+TRUNCATE TABLE Dim_Club; 
+TRUNCATE TABLE Dim_Competition; 
+TRUNCATE TABLE Dim_Date; 
+TRUNCATE TABLE Dim_Hosting; 
+TRUNCATE TABLE Dim_Player; 
+TRUNCATE TABLE Dim_Player_Type; 
+TRUNCATE TABLE Dim_Position; 
+TRUNCATE TABLE Dim_Result; 
+TRUNCATE TABLE Dim_Referee; 
+TRUNCATE TABLE Dim_Round; 
+TRUNCATE TABLE Dim_Stadium; 
+TRUNCATE TABLE Dim_Type_Competition;
